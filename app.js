@@ -1,4 +1,5 @@
 const request = require("request");
+const geocode = require("./utils/geocode");
 
 // const url =
 //   "http://api.weatherstack.com/current?access_key=289ddf43e348b124b6778985d3f2aeb1&query=50.0833,19.9167";
@@ -15,17 +16,22 @@ const request = require("request");
 //   }
 // });
 
-const geocodeURL =
-  "https://api.mapbox.com/geocoding/v5/mapbox.places/Cracow.json?access_token=pk.eyJ1IjoibWFyaW9nOCIsImEiOiJja2h4dWM2OWsyYTEyMnBremFqZWtndG1yIn0.QYO6wIwORgwu8ohFAXTsEw&limit=1";
+// const geocodeURL =
+//   "https://api.mapbox.com/geocoding/v5/mapbox.places/Cracow.json?access_token=pk.eyJ1IjoibWFyaW9nOCIsImEiOiJja2h4dWM2OWsyYTEyMnBremFqZWtndG1yIn0.QYO6wIwORgwu8ohFAXTsEw&limit=1";
 
-request({ url: geocodeURL, json: true }, (error, response) => {
-  if (error) {
-    console.log("Unable to connect to location services!");
-  } else if (response.body.features === 0) {
-    console.log("Unable to find location try another search!");
-  } else {
-    const lat = response.body.features[0].center[1];
-    const lng = response.body.features[0].center[0];
-    console.log(`${lat} ${lng}`);
-  }
+// request({ url: geocodeURL, json: true }, (error, response) => {
+//   if (error) {
+//     console.log("Unable to connect to location services!");
+//   } else if (response.body.features === 0) {
+//     console.log("Unable to find location try another search!");
+//   } else {
+//     const lat = response.body.features[0].center[1];
+//     const lng = response.body.features[0].center[0];
+//     console.log(`${lat} ${lng}`);
+//   }
+// });
+
+geocode("Boston", (error, data) => {
+  console.log("Error", error);
+  console.log("Data", data);
 });
